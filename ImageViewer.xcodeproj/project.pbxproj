@@ -9,10 +9,10 @@
 /* Begin PBXBuildFile section */
 		13BDF0711E573C78009C458F /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BDF0701E573C78009C458F /* UIColor.swift */; };
 		13BDF0721E573D10009C458F /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BDF0701E573C78009C458F /* UIColor.swift */; };
-		170C4021203F049B00DF3A57 /* YTPlayer.html in Resources */ = {isa = PBXBuildFile; fileRef = 170C401F203F049A00DF3A57 /* YTPlayer.html */; };
-		170C4022203F049B00DF3A57 /* YTPlayer.html in Resources */ = {isa = PBXBuildFile; fileRef = 170C401F203F049A00DF3A57 /* YTPlayer.html */; };
-		170C4023203F049B00DF3A57 /* FBPlayer.html in Resources */ = {isa = PBXBuildFile; fileRef = 170C4020203F049A00DF3A57 /* FBPlayer.html */; };
-		170C4024203F049B00DF3A57 /* FBPlayer.html in Resources */ = {isa = PBXBuildFile; fileRef = 170C4020203F049A00DF3A57 /* FBPlayer.html */; };
+		170C4028203F0B4000DF3A57 /* FBPlayer.html in Resources */ = {isa = PBXBuildFile; fileRef = 170C4026203F0B3F00DF3A57 /* FBPlayer.html */; };
+		170C4029203F0B4000DF3A57 /* FBPlayer.html in Resources */ = {isa = PBXBuildFile; fileRef = 170C4026203F0B3F00DF3A57 /* FBPlayer.html */; };
+		170C402A203F0B4000DF3A57 /* YTPlayer.html in Resources */ = {isa = PBXBuildFile; fileRef = 170C4027203F0B4000DF3A57 /* YTPlayer.html */; };
+		170C402B203F0B4000DF3A57 /* YTPlayer.html in Resources */ = {isa = PBXBuildFile; fileRef = 170C4027203F0B4000DF3A57 /* YTPlayer.html */; };
 		4CD1C49C1C16FF64008D5F84 /* CGPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD1C49B1C16FF64008D5F84 /* CGPoint.swift */; };
 		4CD1C49D1C16FF64008D5F84 /* CGPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD1C49B1C16FF64008D5F84 /* CGPoint.swift */; };
 		5AF0E6605E3B055280A902DF /* GalleryItemsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF0EF3CAFE8B7972354F05D /* GalleryItemsDelegate.swift */; };
@@ -99,8 +99,8 @@
 
 /* Begin PBXFileReference section */
 		13BDF0701E573C78009C458F /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
-		170C401F203F049A00DF3A57 /* YTPlayer.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = YTPlayer.html; sourceTree = "<group>"; };
-		170C4020203F049A00DF3A57 /* FBPlayer.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = FBPlayer.html; sourceTree = "<group>"; };
+		170C4026203F0B3F00DF3A57 /* FBPlayer.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = FBPlayer.html; path = ImageViewer/Resources/FBPlayer.html; sourceTree = SOURCE_ROOT; };
+		170C4027203F0B4000DF3A57 /* YTPlayer.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = YTPlayer.html; path = ImageViewer/Resources/YTPlayer.html; sourceTree = SOURCE_ROOT; };
 		4CD1C49B1C16FF64008D5F84 /* CGPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGPoint.swift; sourceTree = "<group>"; };
 		5AF0EF3CAFE8B7972354F05D /* GalleryItemsDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryItemsDelegate.swift; sourceTree = "<group>"; };
 		637822AB1FC4F54D00E839A4 /* UIScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScreen.swift; sourceTree = "<group>"; };
@@ -179,6 +179,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		170C4025203F0B2A00DF3A57 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				170C4026203F0B3F00DF3A57 /* FBPlayer.html */,
+				170C4027203F0B4000DF3A57 /* YTPlayer.html */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		C2573FA41DA6FED600DABB1E /* Thumbnails Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -243,8 +252,7 @@
 		C7DABE581C1224EA00F5BD7B /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				170C4020203F049A00DF3A57 /* FBPlayer.html */,
-				170C401F203F049A00DF3A57 /* YTPlayer.html */,
+				170C4025203F0B2A00DF3A57 /* Resources */,
 				EBBFCB961D26CBA2007E7244 /* BlurView.swift */,
 				EB1F6E181C908DDF0046A7FB /* Configuration */,
 				C7DABE5D1C12275C00F5BD7B /* Extensions */,
@@ -504,10 +512,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				170C4023203F049B00DF3A57 /* FBPlayer.html in Resources */,
 				C7897CEF1C1350B7006447FB /* LaunchScreen.storyboard in Resources */,
+				170C4028203F0B4000DF3A57 /* FBPlayer.html in Resources */,
+				170C402A203F0B4000DF3A57 /* YTPlayer.html in Resources */,
 				C7897CEC1C1350B7006447FB /* Assets.xcassets in Resources */,
-				170C4021203F049B00DF3A57 /* YTPlayer.html in Resources */,
 				C7897CEA1C1350B7006447FB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -516,8 +524,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				170C4022203F049B00DF3A57 /* YTPlayer.html in Resources */,
-				170C4024203F049B00DF3A57 /* FBPlayer.html in Resources */,
+				170C402B203F0B4000DF3A57 /* YTPlayer.html in Resources */,
+				170C4029203F0B4000DF3A57 /* FBPlayer.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
