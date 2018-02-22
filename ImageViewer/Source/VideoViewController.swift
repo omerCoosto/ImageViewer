@@ -67,12 +67,6 @@ class VideoViewController: ItemBaseController<VideoView>, WKNavigationDelegate {
         }
         self.itemView.contentMode = .scaleAspectFill
     }
-
-    func createEmbedFBPlayer() -> WKWebView {
-        let webView = createWKWebView()
-        loadContentOfFile(name: "FBPlayer", withUrlStr: self.videoURL.absoluteString, inWebView: webView)
-        return webView
-    }
     
     func createYTPlayer() -> WKWebView {
         let webView = createWKWebView()
@@ -80,7 +74,7 @@ class VideoViewController: ItemBaseController<VideoView>, WKNavigationDelegate {
         if let query = self.videoURL.query {
             urlStr = self.videoURL.absoluteString.replacingOccurrences(of: "?" + query, with: "")
         }
-        loadContentOfFile(name: "YTPlayer", withUrlStr: urlStr, inWebView: webView)
+        webView.loadHTMLString(ytPlayerHtmlContent(urlStr: urlStr), baseURL: nil)
         return webView
     }
     
@@ -101,13 +95,20 @@ class VideoViewController: ItemBaseController<VideoView>, WKNavigationDelegate {
         return webView
     }
     
-    func loadContentOfFile(name: String, withUrlStr urlStr: String, inWebView webView: WKWebView) {
-        if let htmlFile = Bundle.main.path(forResource: name, ofType: "html"),
-            let html = try? String(contentsOfFile: htmlFile, encoding: String.Encoding.utf8) {
-            webView.loadHTMLString(html.replacingOccurrences(of: "%@", with: urlStr), baseURL: nil)
-        }
+    func ytPlayerHtmlContent(urlStr: String) -> String {
+        return "<html>" +
+        "<body style=\"margin:0px;padding:0px;\">" +
+        "<script type=\"text/javascript\" src=\"http://www.youtube.com/iframe_api\"></script>" +
+        "<script type=\"text/javascript\">" +
+        "function onYouTubeIframeAPIReady() {" +
+                "ytplayer=new YT.Player('playerId',{events:{onReady:onPlayerReady}});" +
+        "}" +
+        "function onPlayerReady(a) { a.target.playVideo(); }" +
+        "</script>" +
+        "<iframe webkit-playsinline id=\"playerId\" type=\"text/html\" width=100% height=100% src=\"\(urlStr)?playsinline=1&rel=0&showinfo=0&fs=1\" frameborder='0'/>" +
+        "</body> </html>"
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
 
         self.player.addObserver(self, forKeyPath: "status", options: NSKeyValueObservingOptions.new, context: nil)
