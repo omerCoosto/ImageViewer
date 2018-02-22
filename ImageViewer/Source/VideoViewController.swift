@@ -8,11 +8,11 @@
 
 import UIKit
 import AVFoundation
-
+import WebKit
 
 extension VideoView: ItemView {}
 
-class VideoViewController: ItemBaseController<VideoView> {
+class VideoViewController: ItemBaseController<VideoView>, WKNavigationDelegate {
 
     fileprivate let swipeToDismissFadeOutAccelerationFactor: CGFloat = 6
 
@@ -53,14 +53,59 @@ class VideoViewController: ItemBaseController<VideoView> {
 
         if isInitialController == true { embeddedPlayButton.alpha = 0 }
 
-        embeddedPlayButton.autoresizingMask = [.flexibleTopMargin, .flexibleLeftMargin, .flexibleBottomMargin, .flexibleRightMargin]
-        self.view.addSubview(embeddedPlayButton)
-        embeddedPlayButton.center = self.view.boundsCenter
+        if self.videoURL.host == "www.youtube.com" {
+            self.itemView.ytPlayer = self.createYTPlayer()
+            self.scrubber.isHidden = true
+        } else {
+            embeddedPlayButton.autoresizingMask = [.flexibleTopMargin, .flexibleLeftMargin, .flexibleBottomMargin, .flexibleRightMargin]
+            self.view.addSubview(embeddedPlayButton)
+            embeddedPlayButton.center = self.view.boundsCenter
+            
+            embeddedPlayButton.addTarget(self, action: #selector(playVideoInitially), for: UIControlEvents.touchUpInside)
 
-        embeddedPlayButton.addTarget(self, action: #selector(playVideoInitially), for: UIControlEvents.touchUpInside)
-
-        self.itemView.player = player
+            self.itemView.player = player
+        }
         self.itemView.contentMode = .scaleAspectFill
+    }
+
+    func createEmbedFBPlayer() -> WKWebView {
+        let webView = createWKWebView()
+        loadContentOfFile(name: "FBPlayer", withUrlStr: self.videoURL.absoluteString, inWebView: webView)
+        return webView
+    }
+    
+    func createYTPlayer() -> WKWebView {
+        let webView = createWKWebView()
+        var urlStr = self.videoURL.absoluteString
+        if let query = self.videoURL.query {
+            urlStr = self.videoURL.absoluteString.replacingOccurrences(of: "?" + query, with: "")
+        }
+        loadContentOfFile(name: "YTPlayer", withUrlStr: urlStr, inWebView: webView)
+        return webView
+    }
+    
+    func createWKWebView() -> WKWebView {
+        let config = WKWebViewConfiguration()
+        config.allowsInlineMediaPlayback = true
+        if #available(iOS 10.0, *) {
+            config.mediaTypesRequiringUserActionForPlayback = .video
+        }
+        let webView = WKWebView(frame: CGRect(x: 0, y: 0, width: itemView.bounds.width, height: itemView.bounds.height),
+                                configuration: config)
+        webView.backgroundColor = UIColor.black
+        webView.isOpaque = false
+        webView.scrollView.isScrollEnabled = false
+        webView.scrollView.pinchGestureRecognizer?.isEnabled = false
+        webView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        webView.navigationDelegate = self
+        return webView
+    }
+    
+    func loadContentOfFile(name: String, withUrlStr urlStr: String, inWebView webView: WKWebView) {
+        if let htmlFile = Bundle.main.path(forResource: name, ofType: "html"),
+            let html = try? String(contentsOfFile: htmlFile, encoding: String.Encoding.utf8) {
+            webView.loadHTMLString(html.replacingOccurrences(of: "%@", with: urlStr), baseURL: nil)
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -101,6 +146,7 @@ class VideoViewController: ItemBaseController<VideoView> {
         let isLandscape = itemView.bounds.width >= itemView.bounds.height
         itemView.bounds.size = aspectFitSize(forContentOfSize: isLandscape ? fullHDScreenSizeLandscape : fullHDScreenSizePortrait, inBounds: self.scrollView.bounds.size)
         itemView.center = scrollView.boundsCenter
+        itemView.ytPlayer?.frame = CGRect(x: 0, y: 0, width: itemView.bounds.size.width, height: itemView.bounds.size.height)
     }
 
     @objc func playVideoInitially() {
@@ -230,5 +276,28 @@ class VideoViewController: ItemBaseController<VideoView> {
         autoPlayStarted = true
         embeddedPlayButton.isHidden = true
         scrubber.play()
+    }
+    
+    // MARK: - WKNavigationDelegate
+    
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        self.activityIndicatorView.startAnimating()
+    }
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        self.activityIndicatorView.stopAnimating()
+        UIView.animate(withDuration: 0.3, animations: { [weak self] in
+            self?.itemView.previewImageView.alpha = 0
+        })
+    }
+    
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        self.activityIndicatorView.stopAnimating()
+        self.itemView.previewImageView.alpha = 1
+    }
+    
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+        self.activityIndicatorView.stopAnimating()
+        self.itemView.previewImageView.alpha = 1
     }
 }

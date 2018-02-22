@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		13BDF0711E573C78009C458F /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BDF0701E573C78009C458F /* UIColor.swift */; };
 		13BDF0721E573D10009C458F /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BDF0701E573C78009C458F /* UIColor.swift */; };
+		170C401B203EBD8C00DF3A57 /* Ressources in Resources */ = {isa = PBXBuildFile; fileRef = 170C401A203EBD8C00DF3A57 /* Ressources */; };
 		4CD1C49C1C16FF64008D5F84 /* CGPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD1C49B1C16FF64008D5F84 /* CGPoint.swift */; };
 		4CD1C49D1C16FF64008D5F84 /* CGPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD1C49B1C16FF64008D5F84 /* CGPoint.swift */; };
 		5AF0E6605E3B055280A902DF /* GalleryItemsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF0EF3CAFE8B7972354F05D /* GalleryItemsDelegate.swift */; };
@@ -95,6 +96,7 @@
 
 /* Begin PBXFileReference section */
 		13BDF0701E573C78009C458F /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		170C401A203EBD8C00DF3A57 /* Ressources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Ressources; sourceTree = "<group>"; };
 		4CD1C49B1C16FF64008D5F84 /* CGPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGPoint.swift; sourceTree = "<group>"; };
 		5AF0EF3CAFE8B7972354F05D /* GalleryItemsDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryItemsDelegate.swift; sourceTree = "<group>"; };
 		637822AB1FC4F54D00E839A4 /* UIScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScreen.swift; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				EB1CEC171C84A4EE00BB27B8 /* Info.plist */,
+				170C401A203EBD8C00DF3A57 /* Ressources */,
 				C7DABE581C1224EA00F5BD7B /* Source */,
 				C7DABE531C12248600F5BD7B /* Supporting Files */,
 			);
@@ -496,6 +499,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				170C401B203EBD8C00DF3A57 /* Ressources in Resources */,
 				C7897CEF1C1350B7006447FB /* LaunchScreen.storyboard in Resources */,
 				C7897CEC1C1350B7006447FB /* Assets.xcassets in Resources */,
 				C7897CEA1C1350B7006447FB /* Main.storyboard in Resources */,

@@ -8,11 +8,20 @@
 
 import UIKit
 import AVFoundation
+import WebKit
 
 class VideoView: UIView {
 
     let previewImageView = UIImageView()
     var image: UIImage? { didSet { previewImageView.image = image } }
+    var ytPlayer: WKWebView? {
+        didSet {
+            if let ytPlayer = ytPlayer {
+                self.insertSubview(ytPlayer, belowSubview: previewImageView)
+            }
+        }
+    }
+    
     var player: AVPlayer? {
 
         willSet {
