@@ -31,8 +31,15 @@ class VideoViewController: ItemBaseController<VideoView>, WKNavigationDelegate {
 
         self.videoURL = videoURL
         self.scrubber = scrubber
-        self.player = AVPlayer(url: self.videoURL)
         
+        var options: [String : Any]? = nil
+        if let cookies = HTTPCookieStorage.shared.cookies {
+            let cookiesStr = HTTPCookie.requestHeaderFields(with: cookies) // convert cookies to string array
+            options = ["AVURLAssetHTTPHeaderFieldsKey": cookiesStr]
+        }
+        let asset = AVURLAsset(url: self.videoURL, options: options)
+        self.player = AVPlayer(playerItem: AVPlayerItem(asset: asset))
+
         ///Only those options relevant to the paging VideoViewController are explicitly handled here, the rest is handled by ItemViewControllers
         for item in configuration {
             
