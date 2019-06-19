@@ -91,6 +91,8 @@
 		EBE627101D268A7F0095999A /* GalleryDisplacedViewsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE6270E1D268A7F0095999A /* GalleryDisplacedViewsDataSource.swift */; };
 		EBE627121D268AB70095999A /* GalleryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE627111D268AB70095999A /* GalleryItem.swift */; };
 		EBE627131D268AB70095999A /* GalleryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE627111D268AB70095999A /* GalleryItem.swift */; };
+		EC9373DD22BA3A60003FB1D6 /* YoutubeVideoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9373DC22BA3A60003FB1D6 /* YoutubeVideoManager.swift */; };
+		EC9373DE22BA3AF8003FB1D6 /* YoutubeVideoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9373DC22BA3A60003FB1D6 /* YoutubeVideoManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -145,6 +147,7 @@
 		EBE627081D2689AD0095999A /* ItemController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemController.swift; sourceTree = "<group>"; };
 		EBE6270E1D268A7F0095999A /* GalleryDisplacedViewsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryDisplacedViewsDataSource.swift; sourceTree = "<group>"; };
 		EBE627111D268AB70095999A /* GalleryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GalleryItem.swift; path = Source/GalleryItem.swift; sourceTree = "<group>"; };
+		EC9373DC22BA3A60003FB1D6 /* YoutubeVideoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeVideoManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -353,6 +356,7 @@
 				EB6F46541D4660AC00984035 /* VideoView.swift */,
 				EB60EE551D58EB4800CC5BA8 /* VideoScrubber.swift */,
 				EB60EE581D590E8B00CC5BA8 /* Slider.swift */,
+				EC9373DC22BA3A60003FB1D6 /* YoutubeVideoManager.swift */,
 			);
 			name = Video;
 			sourceTree = "<group>";
@@ -476,6 +480,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -538,6 +543,7 @@
 				EB1DB6E61D3E500B00DC9064 /* UIImageView.swift in Sources */,
 				EBAF4C661D3937BC0039CA93 /* VideoViewController.swift in Sources */,
 				A32D40051D45C50800AB5ADA /* Bool.swift in Sources */,
+				EC9373DE22BA3AF8003FB1D6 /* YoutubeVideoManager.swift in Sources */,
 				EB40C3731C9C5BF1004EA215 /* UIViewController.swift in Sources */,
 				EBE627061D2688890095999A /* GalleryViewController.swift in Sources */,
 				EB1DB6EC1D3E74A000DC9064 /* CGRect.swift in Sources */,
@@ -592,6 +598,7 @@
 				EB40C3781C9C5C48004EA215 /* GalleryItemsDataSource.swift in Sources */,
 				EBAF4C611D391C720039CA93 /* GalleryPagingDataSource.swift in Sources */,
 				EB1CEC1F1C84A54600BB27B8 /* UtilityFunctions.swift in Sources */,
+				EC9373DD22BA3A60003FB1D6 /* YoutubeVideoManager.swift in Sources */,
 				A32D40041D45C4DE00AB5ADA /* Bool.swift in Sources */,
 				C7DABE641C12276800F5BD7B /* CGSize.swift in Sources */,
 				13BDF0711E573C78009C458F /* UIColor.swift in Sources */,

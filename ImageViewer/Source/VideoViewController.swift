@@ -60,7 +60,7 @@ class VideoViewController: ItemBaseController<VideoView>, WKNavigationDelegate {
 
         if isInitialController == true { embeddedPlayButton.alpha = 0 }
 
-        if self.videoURL.host == "www.youtube.com" {
+        if YoutubeVideoManager.isYoutubeUrl(self.videoURL.absoluteString) {
             self.itemView.ytPlayer = self.createYTPlayer()
             self.scrubber.isHidden = true
         } else {
@@ -77,11 +77,9 @@ class VideoViewController: ItemBaseController<VideoView>, WKNavigationDelegate {
     
     func createYTPlayer() -> WKWebView {
         let webView = createWKWebView()
-        var urlStr = self.videoURL.absoluteString
-        if let query = self.videoURL.query {
-            urlStr = self.videoURL.absoluteString.replacingOccurrences(of: "?" + query, with: "")
-        }
-        webView.loadHTMLString(ytPlayerHtmlContent(urlStr: urlStr), baseURL: nil)
+        let urlStr = self.videoURL.absoluteString
+        let id = YoutubeVideoManager.youtubeId(from: urlStr) ?? "0"
+        webView.loadHTMLString(YoutubeVideoManager.playerHtmlContent(videoId: id), baseURL: nil)
         return webView
     }
     
@@ -100,20 +98,6 @@ class VideoViewController: ItemBaseController<VideoView>, WKNavigationDelegate {
         webView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         webView.navigationDelegate = self
         return webView
-    }
-    
-    func ytPlayerHtmlContent(urlStr: String) -> String {
-        return "<html>" +
-        "<body style=\"margin:0px;padding:0px;\">" +
-        "<script type=\"text/javascript\" src=\"http://www.youtube.com/iframe_api\"></script>" +
-        "<script type=\"text/javascript\">" +
-        "function onYouTubeIframeAPIReady() {" +
-                "ytplayer=new YT.Player('playerId',{events:{onReady:onPlayerReady}});" +
-        "}" +
-        "function onPlayerReady(a) { a.target.playVideo(); }" +
-        "</script>" +
-        "<iframe webkit-playsinline id=\"playerId\" type=\"text/html\" width=100% height=100% src=\"\(urlStr)?playsinline=1&rel=0&showinfo=0&fs=1\" frameborder='0'/>" +
-        "</body> </html>"
     }
     
     override func viewWillAppear(_ animated: Bool) {
