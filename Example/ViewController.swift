@@ -39,6 +39,14 @@ class ViewController: UIViewController {
             var galleryItem: GalleryItem!
 
             switch index {
+            case 0:
+                
+                galleryItem = GalleryItem.video(fetchPreviewImageBlock: { $0(UIImage(named: "0")!) }, videoURL: URL (string: "https://www.youtube.com/watch?v=xzvluXYPry4")!)
+                
+            case 1:
+                
+                galleryItem = GalleryItem.video(fetchPreviewImageBlock: { $0(UIImage(named: "1")!) }, videoURL: URL (string: "youtu.be/C0DPdy98e4c")!)
+                
 
             case 2:
 
